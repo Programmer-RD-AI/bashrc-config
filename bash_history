@@ -517,3 +517,124 @@ clear
 npm run dev
 code .
 npm run dev
+python setup.py build_ext --inplace
+pip install cython
+python setup.py build_ext --inplace
+pip install wheel --upgrade
+python setup.py build_ext --inplace
+pip install setuptools
+pip install Cython
+python setup.py build_ext --inplace
+python -m pip install Cython
+python -m pip install pip --upgrade
+pip3 install --upgrade cython
+python setup.py install
+python3
+Maybe try
+pip install --upgrade cython
+python3
+python3 setup.py install
+sudo python3 setup.py install
+pip install --upgrade cython
+python -m pip install --upgrade pip
+This solves my problem:
+python -m pip install --upgrade pip
+then:
+pip install --upgrade cython
+sudo pip install cython
+python3 setup.py build_ext --inplace
+python3 test.py 
+python setup.py build_ext --inplace
+python3 test.py 
+python3 setup.py build_ext --inplace
+ls
+python3 setup.py build_ext --inplace
+python3 test.py 
+python3 setup.py build_ext --inplace
+python3 test.py 
+clear
+python3 test.py 
+cd Jobs/Altrium/Altrium-PD/
+ls
+cd Learning/
+ls
+clear
+mkdir Cython
+cd Cython
+ls
+clear
+ls
+code .
+pip install cython
+ls
+pip install setuptools
+exit
+code .
+ls
+mkdir FOS
+touch main.p
+touch main.py
+rm -rf main.p
+ls
+clear
+ls
+cd FOS/
+ls
+clear
+touch __init__.py
+ls
+clear
+touch helper_functions.py
+ls
+lear
+clear
+ls
+mkdir models
+mkdir patterns
+mkdir services
+mkdir ui
+cd ui/
+ls
+clear
+touch __init__.py
+cd ..
+ls
+clear
+cd mode
+cd models/
+ls
+clear
+touch pizza.py
+touch order.py
+touch user.py
+touch loyalty.py
+ls
+clear
+ls
+touch __init__.py
+ls
+clear
+cd ..
+cd patterns/
+ls
+clear
+touch __init__.py
+ls
+clear
+touch builder.py
+touch observer.py
+touch strategy.py
+touch chain_of_responsibility.py
+touch state.py
+touch command.py
+touch decorator.py
+ls
+clear
+cd ..
+vim .
+ls
+clear
+vim .
+ls
+clear
+exit
