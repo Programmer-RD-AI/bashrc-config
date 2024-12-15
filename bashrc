@@ -123,6 +123,10 @@ alias df='df -h'
 alias free='free -h'
 alias top='htop'
 
+# Configuration Shortcuts
+alias changeVimConfig='nvim ~/.config/nvim/'
+alias changeBashConfig='nvim ~/.config/bash/'
+
 # ────────────────────────── Completions ────────────────────────────
 [[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
