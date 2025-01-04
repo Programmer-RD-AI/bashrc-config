@@ -124,8 +124,44 @@ alias free='free -h'
 alias top='htop'
 
 # Configuration Shortcuts
-alias changeVimConfig='nvim ~/.config/nvim/'
-alias changeBashConfig='nvim ~/.config/bash/'
+alias cvc='nvim ~/.config/nvim/'
+alias cbc='nvim ~/.config/bash/'
+
+# Git
+alias g='git'
+alias ga='git add'
+alias gs='git status'
+alias gd='git diff'
+alias gc='git commit -m'
+alias gca='git commit --amend'
+alias gcb='git checkout -b'
+alias gb='git branch'
+alias gl='git log'
+alias gpl='git pull'
+alias gpr='git push origin'
+alias gf='git fetch'
+
+# Python
+alias py='python'
+alias py3='python3'
+alias pipi='pip install'
+
+## Ruff
+alias rc='ruff check'
+alias rcf='ruff check --fix'
+alias rf='ruff format'
+
+# Directory
+alias mkd='mkdir -p'
+alias rmf='rm -rf'
+
+# Bash
+alias reload='source ~/.bashrc'
+
+# General
+alias c='clear'
+alias cl='clear && ls'
+alias update='sudo apt-get update && sudo apt-get upgrade'
 
 # ────────────────────────── Completions ────────────────────────────
 [[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
@@ -149,3 +185,4 @@ export NVM_DIR="$HOME/.nvm"
 # ────────────────────────── Local Overrides ────────────────────────
 [[ -f ~/.bash_local ]] && source ~/.bash_local
 [[ -f ~/.bash_private ]] && source ~/.bash_private
+. "$HOME/.cargo/env"
