@@ -160,8 +160,10 @@ alias reload='source ~/.bashrc'
 
 # General
 alias c='clear'
+alias e='exit'
 alias cl='clear && ls'
 alias update='sudo apt-get update && sudo apt-get upgrade'
+alias openapps='google-chrome & spotify & github-desktop & code &'
 
 # ────────────────────────── Completions ────────────────────────────
 [[ -f /usr/share/bash-completion/bash_completion ]] && source /usr/share/bash-completion/bash_completion
