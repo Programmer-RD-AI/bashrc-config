@@ -121,15 +121,23 @@ __git_status() {
 
 __prompt_command() {
     local EXIT="$?"
-    local LIGHTNING='\342\232\241' # Unicode lightning bolt for a touch of flair
+    local LIGHTNING='\342\232\241'
+    local VENV_COLOR="\e[38;5;141m"
 
-    # Two-line prompt with minimal decoration
     PS1="${PROMPT_DECO_COLOR}╭${RESET_COLOR} "
     PS1+="${USER_COLOR}\u${PROMPT_DECO_COLOR}@${HOST_COLOR}\h"
+
+    # Show Python environment (venv or conda)
+    if [ -n "$VIRTUAL_ENV" ]; then
+        local venv_name=$(basename "$VIRTUAL_ENV")
+        PS1+=" ${PROMPT_DECO_COLOR}(${VENV_COLOR}venv:${venv_name}${PROMPT_DECO_COLOR})"
+    elif [ -n "$CONDA_DEFAULT_ENV" ]; then
+        PS1+=" ${PROMPT_DECO_COLOR}(${VENV_COLOR}conda:${CONDA_DEFAULT_ENV}${PROMPT_DECO_COLOR})"
+    fi
+
     PS1+=" ${PROMPT_DECO_COLOR}▸${PATH_COLOR} \w"
     PS1+="${PROMPT_DECO_COLOR}$(__git_status)${RESET_COLOR}\n"
 
-    # Right-side prompt element with dynamic error indication
     if [[ $EXIT != 0 ]]; then
         PS1+="${PROMPT_DECO_COLOR}╰${RESET_COLOR} ${PROMPT_DECO_COLOR}${LIGHTNING}${RESET_COLOR} "
     else
