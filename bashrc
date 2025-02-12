@@ -86,6 +86,26 @@ ${RED}          \`:+ssssssssssssssssss+:\`
 ${RED}              .-/+oossssoo+/-.${RESET}
 "
 }
+
+# ────────────────────────── Load Environment Variables ────────────────────────────
+# Add this in the Special Functions section
+load_env() {
+    local env_file="${1:-.env}"
+    if [[ -f "$env_file" ]]; then
+        while IFS='=' read -r key value || [[ -n "$key" ]]; do
+            # Skip comments and empty lines
+            [[ $key =~ ^#.*$ ]] || [[ -z "$key" ]] && continue
+            # Remove surrounding quotes from value if present
+            value=$(echo "$value" | sed -e 's/^[[:space:]"'"'"']*//g' -e 's/[[:space:]"'"'"']*$//g')
+            # Export the variable
+            export "$key"="$value"
+        done <"$env_file"
+        echo "Loaded environment variables from $env_file"
+    else
+        echo "No $env_file file found"
+    fi
+}
+
 # ────────────────────────── Prompt Setup ────────────────────────────
 
 __git_status() {
@@ -220,7 +240,6 @@ alias update='sudo apt-get update && sudo apt-get upgrade'
 alias openapps='google-chrome & spotify & github-desktop & code &'
 
 # ────────────────────────── Special Functions ────────────────────────────
-
 extract() {
     for archive in $*; do
         if [ -f $archive ]; then
@@ -249,6 +268,7 @@ extract() {
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash
 
 # ────────────────────────── Tool Initializations ────────────────────
+
 # Conda
 __conda_setup="$('/home/ranuga/anaconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
 if [ $? -eq 0 ]; then
@@ -263,11 +283,18 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
+# ────────────────────────── Environment Files ────────────────────────────
+
+# Load global environment variables
+[[ -f "$HOME/.env" ]] && load_env "$HOME/.env"
+# Load project-specific environment variables
+[[ -f "$(pwd)/.env" ]] && load_env "$(pwd)/.env"
+
 # ────────────────────────── Local Overrides ────────────────────────
+
 [[ -f ~/.bash_local ]] && source ~/.bash_local
 [[ -f ~/.bash_private ]] && source ~/.bash_private
 . "$HOME/.cargo/env"
 
 # ────────────────────────── Launchers ──────────────────────────────
-
 show_system_info
