@@ -8,6 +8,7 @@ export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="$HOME/.nvm/versions/node/current/bin:$PATH"
+export PATH="/home/ranuga/snap/code/183/.local/share/../bin:$PATH"
 
 # ────────────────────────── Color palette ────────────────────────────
 
@@ -106,8 +107,16 @@ load_env() {
     fi
 }
 
-# ────────────────────────── Prompt Setup ────────────────────────────
+# ────────────────────────── MongoDB Setup ────────────────────────────
+run_mongo_container() {
+    # Run the MongoDB container in detached mode
+    docker run -d --name mongo-container -p 27017:27017 mongo:latest
 
+    # Output the connection string
+    echo "mongodb://admin:password@localhost:27017/"
+}
+
+# ────────────────────────── Prompt Setup ────────────────────────────
 __git_status() {
     local status=$(git status -s 2>/dev/null)
     local branch=$(git symbolic-ref --short HEAD 2>/dev/null)
@@ -297,4 +306,5 @@ export NVM_DIR="$HOME/.nvm"
 . "$HOME/.cargo/env"
 
 # ────────────────────────── Launchers ──────────────────────────────
+
 show_system_info
