@@ -109,11 +109,22 @@ load_env() {
 
 # ────────────────────────── MongoDB Setup ────────────────────────────
 run_mongo_container() {
+    local container_name="mongo-container"
+
+    # Check if container exists, stop and remove it
+    if docker ps -a --filter "name=^/${container_name}$" --format "{{.Names}}" | grep -q "^${container_name}$"; then
+        echo "Container ${container_name} already exists. Stopping and removing it..."
+        docker stop ${container_name} >/dev/null 2>&1
+        docker rm ${container_name} >/dev/null 2>&1
+    fi
+
     # Run the MongoDB container in detached mode
-    docker run -d --name mongo-container -p 27017:27017 mongo:latest
+    echo "Creating new MongoDB container..."
+    docker run -d --name ${container_name} -p 27017:27017 mongo:latest
 
     # Output the connection string
     echo "mongodb://admin:password@localhost:27017/"
+    echo "Container started successfully."
 }
 
 # ────────────────────────── Prompt Setup ────────────────────────────
